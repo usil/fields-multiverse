@@ -12,8 +12,7 @@ Just a 2022 template ready to use with:
 
 # Start strapi
 
-- Create a database inside mysql instance. Name will be required in the next steps
-- Import the required tables and data: ./database/database.sql
+- Create a database inside mysql instance with name is "equivalences_manager"
 - Export or configure this environment variables
 
 ```sh
@@ -30,6 +29,7 @@ export JWT_SECRET=tobemodified
 - Excute:
 
 ```sh
+npm install
 npm run start
 ```
 
