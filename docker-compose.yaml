@@ -41,7 +41,7 @@ services:
       MYSQL_USER: ${DATABASE_USERNAME}
       MYSQL_PASSWORD: ${DATABASE_PASSWORD}
     ports:
-      - '3306:3306'
+      - '${DATABASE_PORT}:3306'
     volumes:
       - strapi-data:/var/lib/mysql #using a volume
       #- ./data:/var/lib/mysql # if you want to use a bind folder

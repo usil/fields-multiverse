@@ -39,7 +39,6 @@ npm run start
 
 ```
 - create .env file and copy content of .env.example and put values
-- docker-compose pull
 - docker-compose up --build
 ```
 
