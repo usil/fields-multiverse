@@ -19,8 +19,12 @@ Just a 2023 template ready to use with:
 - id
 - default_attribute
 - description
-- paypal
-- yape
+- system1
+- system2
+- system3
+- system4
+- system5
+
 # Start without Docker
 
 - Create a database inside mysql instance with name is "equivalences_manager"
@@ -29,6 +33,8 @@ Just a 2023 template ready to use with:
 ```sh
 export HOST=0.0.0.0
 export PORT=1337
+export ADMIN_JWT_SECRET="changeme"
+export API_TOKEN_SALT="changeme"
 export APP_KEYS="toBeModified1,toBeModified2"
 export NODE_ENV="development"
 export DATABASE_CLIENT="mysql"
@@ -37,20 +43,25 @@ export DATABASE_PORT=3306
 export DATABASE_NAME="equivalences_manager"
 export DATABASE_USERNAME="changeme"
 export DATABASE_PASSWORD="changeme"
+export DATABASE_SSL=false
 ```
 
 | name                  | Description | Default Value |
 | --------------------- | ----------- | ------------- |
 | HOST      | The application host      | 0.0.0.0                     |
 | PORT             | The application port | 1337  |
+| ADMIN_JWT_SECRET         | Secret used to encode JWT tokens | admin-jwt-default  |
+| API_TOKEN_SALT           | Salt used to generate API tokens | api-token-salt-default  |
 | APP_KEYS             | Identifier of server |  |
 | NODE_ENV             | Type of environment where the application is running|   |
-| DATABASE_CLIENT             | Type of database |  |
+| DATABASE_CLIENT           | Type of database |  |
 | DATABASE_HOST             | Database host | 0.0.0.0  |
 | DATABASE_PORT             | Database port | 3306 |
 | DATABASE_NAME             | Database name |  equivalences_manager  |
-| DATABASE_USERNAME             | Database username | root |
-| DATABASE_PASSWORD             | Database password | 12345  |
+| DATABASE_USERNAME         | Database username | root |
+| DATABASE_PASSWORD         | Database password | 12345  |
+| DATABASE_SSL             | For SSL database connection | false  |
+
 
 
 
@@ -139,17 +150,48 @@ After following these steps, the system will show you a token which you must sav
 
 ```json
 {
-    "default_attribute": "id_number",
+    "default_attribute": "name",
     "description": "this is a new attribute",
-    "paypal": "document",
-    "yape": "dni"
+    "system1": "unique_name",
+    "system2": "name",
+    "system3": "nombre",
+    "system4": "attr_name",
+    "system5": "system5_name"
+
 }
 ```
 
+<br>
 
+# Use cases
 
+Let's say we have 3 big and important systems and each one has its own way and style of declaring its variables.
 
+Take **YAPE, PLIN and BCP for example.**
 
+These systems have their own way of storing their customer information.
+
+For example to save the identity document of the clients
+
+***YAPE*** save as **document**
+
+***PLIN*** save as **id_document**
+
+***BCP*** save as **id_number**
+
+What would happen if you tried to integrate these three systems?
+
+If you don't know how each system stores your customer information, you'd have problems. But that's why **equivalences_manager** :bowtie: was created.
+
+## If you need to send information between systems and need to save its equivalencies, this repository is for you :smile: .
+
+***note: this repository only supports 5 systems, if you want to add more systems you will need to rebuild the docker image and save the new systems to the schema json equivalence file***
 
 <br>
-> For more rest points, more detail on the wiki
+
+# Roadmap
+
+**Equivalences manager v2**
+
+-  entities / tables more normalized.
+

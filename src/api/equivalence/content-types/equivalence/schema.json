@@ -4,7 +4,8 @@
   "info": {
     "singularName": "equivalence",
     "pluralName": "equivalences",
-    "displayName": "equivalence"
+    "displayName": "equivalence",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -17,10 +18,19 @@
     "description": {
       "type": "text"
     },
-    "paypal": {
+    "system1": {
       "type": "string"
     },
-    "yape": {
+    "system2": {
+      "type": "string"
+    },
+    "system3": {
+      "type": "string"
+    },
+    "system4": {
+      "type": "string"
+    },
+    "system5": {
       "type": "string"
     }
   }
