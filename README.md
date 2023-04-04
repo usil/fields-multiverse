@@ -117,7 +117,6 @@ After following these steps, the system will show you a token which you must sav
 ***note: you can added filter or other helpers to this endpoint [doc](https://docs.strapi.io/dev-docs/api/rest/filters-locale-publication) .***
 
 <br>
-<br>
 
 **If you added filter you need added params in your endpoint.**
 
@@ -125,7 +124,6 @@ After following these steps, the system will show you a token which you must sav
 |------------|--------------|-------------|
 | filters[changeme1][$eq]  | changeme2 | with this query param you can filter the result. "changeme1" should change for a equivalence attribute that you want filter, and "changeme2" should change for attribute value  |
 
-<br>
 <br>
 <hr>
 
@@ -186,8 +184,6 @@ If you don't know how each system stores your customer information, you'd have p
 ## If you need to send information between systems and need to save its equivalencies, this repository is for you :smile: .
 
 ***note: this repository only supports 5 systems, if you want to add more systems you will need to rebuild the docker image and save the new systems to the schema json equivalence file***
-
-<br>
 
 # Roadmap
 
