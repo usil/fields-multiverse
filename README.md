@@ -1,4 +1,4 @@
-# Equivalences manager
+# Equivalences manager v1
 
 Just a 2023 template ready to use with:
 
