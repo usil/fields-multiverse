@@ -1,4 +1,4 @@
-# Strapi Mysql Starter
+# Equivalences manager
 
 Just a 2023 template ready to use with:
 
