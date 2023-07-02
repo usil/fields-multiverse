@@ -1,6 +1,6 @@
 version: "3"
 services:
-  fields-multiverse:
+  fields-multiverse-core:
     container_name: fields-multiverse
     build: .
     image: myfields-multiverse:latest
@@ -45,10 +45,6 @@ services:
     networks:
       - fields-multiverse-network
 
-volumes:
-    fields-multiverse-data:
-
 networks:
-  fields-multiverse:
-    name: fields-multiverse-network
+  fields-multiverse-network:
     driver: bridge

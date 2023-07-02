@@ -153,9 +153,17 @@ To create a token, follow these steps
 After following these steps, the system will show you a token which you must save and send as Authorization header in your endpoints.
 ```
 
-# Notes
+# Customization
 
-- This repository only supports 10 systems. If you want to add more systems you will need to rebuild the docker image and save the new systems to the schema json equivalence file***
+This repository only supports 10 systems. If you want to add more systems you will need to start it in developer mode, add your new fields, rebuild, etc and save the changes in your git repository
+
+To start the development mode easily, you could use docker. Only add this volume to the **fields-multiverse-core** service
+
+```
+volumes:
+    - ./:/opt/app  
+```
+
 
 # Roadmap
 
