@@ -1,15 +1,15 @@
 version: "3"
 services:
-  fields-multiverse:
-    container_name: fields-multiverse
+  strapi:
+    container_name: strapi
     build: .
-    image: myfields-multiverse:latest
+    image: mystrapi:latest
     restart: unless-stopped
     env_file: .env
     environment:
       NODE_ENV: ${NODE_ENV}
       DATABASE_CLIENT: ${DATABASE_CLIENT}
-      DATABASE_HOST: fields-multiverse-db
+      DATABASE_HOST: strapiDB
       DATABASE_NAME: ${DATABASE_NAME}
       DATABASE_USERNAME: ${DATABASE_USERNAME}
       DATABASE_PASSWORD: ${DATABASE_PASSWORD}
@@ -20,20 +20,23 @@ services:
       HOST: ${HOST}
       PORT: ${PORT}
       APP_KEYS: ${APP_KEYS}
+    volumes:
+      - ./config:/opt/app/config
+      - ./src:/opt/app/src
+      - ./package.json:/opt/package.json
+      - ./package-lock.json:/opt/package-lock.json # Replace with package-lock.json if using npm
+      - ./.env:/opt/app/.env
     ports:
       - "${PORT}:1337"
-    volumes:
-      - ./:/opt/app  
     networks:
-      - fields-multiverse-network
+      - strapi
     depends_on:
-      - fields-multiverse-db
+      - strapiDB
 
-  fields-multiverse-db: 
+  strapiDB: 
     image: mysql:5.7.17
     command: --default-authentication-plugin=mysql_native_password
-    container_name: fields-multiverse-db
-    platform: linux/amd64
+    platform: linux/amd64 #for platform error on Apple M1 chips
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: ${DATABASE_PASSWORD}
@@ -42,13 +45,16 @@ services:
       MYSQL_PASSWORD: ${DATABASE_PASSWORD}
     ports:
       - '${DATABASE_PORT}:3306'
+    volumes:
+      - strapi-data:/var/lib/mysql #using a volume
+      #- ./data:/var/lib/mysql # if you want to use a bind folder
     networks:
-      - fields-multiverse-network
+      - strapi
 
 volumes:
-    fields-multiverse-data:
+    strapi-data:
 
 networks:
-  fields-multiverse:
-    name: fields-multiverse-network
+  strapi:
+    name: Strapi
     driver: bridge
