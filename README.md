@@ -104,6 +104,63 @@ npm run start
 
 ## Endpoints
 
+### ***Get the equivalences of one field - option 1***
+
+**Base Url** : `http://your-domain.com`
+
+**Endpoint** : `/api/equivalences-v1?filter[$and][base_field_name][$eq]=gender&filter[$and][base_field_value][$eq]=male`
+
+**Method** : `GET`
+
+**Auth required** : Yes. Check [this](#security)
+
+**Body required**: Not
+
+In this example we are getting the equivalences of feld called **gender** with value **male**
+
+| key                  | Value | Explanation |
+|:--------------------- | ----------- | ------------- |
+| filters[base_field_name][$eq]     | gender      | base_field_name equal "gender" |
+| filters[base_field_value][$eq]      | male      | base_field_value equal "male" |
+
+**Response**
+
+```
+{
+    "data": [
+        {
+            "id": 1,
+            "attributes": {
+                "base_field_name": "gender",
+                "base_field_value": "male",
+                "description": null,
+                "system1_value": "M",
+                "system2_value": "0",
+                "system3_value": "MA",
+                "system4_value": null,
+                "system5_value": null,
+                "system6_value": null,
+                "system7_value": null,
+                "system8_value": null,
+                "system9_value": null,
+                "system10_value": null,
+                "createdAt": "2023-07-03T01:15:52.191Z",
+                "updatedAt": "2023-07-03T01:15:56.182Z",
+                "publishedAt": "2023-07-03T01:15:56.171Z"
+            }
+        }
+    ],
+    "meta": {
+        "pagination": {
+            "page": 1,
+            "pageSize": 25,
+            "pageCount": 1,
+            "total": 1
+        }
+    }
+}
+```
+
 ### ***Get all the equivalences***
 
 **Base Url** : `http://your-domain.com`
@@ -116,21 +173,11 @@ npm run start
 
 **Body required**: Not
 
-### ***Get the equivalences of one field***
+For advanced queries, check
 
-**Base Url** : `http://your-domain.com`
+- https://docs.strapi.io/dev-docs/api/rest
+- https://docs.strapi.io/dev-docs/api/rest/filters-locale-publication
 
-**Endpoint** : `/api/equivalences?filters[base_field][$eq]=gender`
-
-**Method** : `GET`
-
-**Auth required** : Yes. Check [this](#security)
-
-**Body required**: Not
-
-In this example the queried base field is **gender**.
-
-For advanced queries, check this https://docs.strapi.io/dev-docs/api/rest/filters-locale-publication
 
 # Security
 
@@ -163,6 +210,8 @@ To start the development mode easily, you could use docker. Only add this volume
 volumes:
     - ./:/opt/app  
 ```
+
+and set the **NODE_ENV** variable to **production**
 
 
 # Roadmap

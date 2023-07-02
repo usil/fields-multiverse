@@ -12,40 +12,43 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "base_field": {
+    "base_field_name": {
+      "type": "string"
+    },
+    "base_field_value": {
       "type": "string"
     },
     "description": {
       "type": "text"
     },
-    "system1": {
+    "system1_value": {
       "type": "string"
     },
-    "system2": {
+    "system2_value": {
       "type": "string"
     },
-    "system3": {
+    "system3_value": {
       "type": "string"
     },
-    "system4": {
+    "system4_value": {
       "type": "string"
     },
-    "system5": {
+    "system5_value": {
       "type": "string"
     },
-    "system6": {
+    "system6_value": {
       "type": "string"
     },
-    "system7": {
+    "system7_value": {
       "type": "string"
     },
-    "system8": {
+    "system8_value": {
       "type": "string"
     },
-    "system9": {
+    "system9_value": {
       "type": "string"
     },
-    "system10": {
+    "system10_value": {
       "type": "string"
     }
   }
