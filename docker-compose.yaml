@@ -22,8 +22,8 @@ services:
       APP_KEYS: ${APP_KEYS}
     ports:
       - "${PORT}:1337"
-    volumes:
-      - ./:/opt/app  
+#    volumes:
+#      - ./:/opt/app  
     networks:
       - fields-multiverse-network
     depends_on:

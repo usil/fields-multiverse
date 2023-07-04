@@ -31,7 +31,7 @@ Based on [strapi](https://strapi.io) 2023 version
 
 # Start with docker
 
-- create .env file and copy content of .env.example and put values
+- create .env file and copy content of https://github.com/usil/fields-multiverse/wiki/Linux-env-variables
 
 ```
 source .env
@@ -40,29 +40,13 @@ docker-compose up --build
 
 # Start without Docker
 
-- Create a database inside mysql instance with name is "fields-multiverse"
-- Export or configure this environment variables
-
-```sh
-export HOST=0.0.0.0
-export PORT=1337
-export ADMIN_JWT_SECRET="changeme"
-export API_TOKEN_SALT="changeme"
-export APP_KEYS="toBeModified1,toBeModified2"
-export NODE_ENV="development"
-export DATABASE_CLIENT="mysql"
-export DATABASE_HOST="localhost"
-export DATABASE_PORT=3306
-export DATABASE_NAME="fields-multiverse"
-export DATABASE_USERNAME="changeme"
-export DATABASE_PASSWORD="changeme"
-export DATABASE_SSL=false
-```
-
+- Create a database inside mysql instance with name is "fields_multiverse"
+- create .env file and copy content of https://github.com/usil/fields-multiverse/wiki/Linux-env-variables
 
 - Excute:
 
 ```sh
+source .env
 npm install
 npm run start
 ```
@@ -108,7 +92,7 @@ npm run start
 
 **Base Url** : `http://your-domain.com`
 
-**Endpoint** : `/api/equivalences-v1?filter[$and][base_field_name][$eq]=gender&filter[$and][base_field_value][$eq]=male`
+**Endpoint** : `/api/equivalences-v1?filters[base_field_name][$eq]=gender&filters[base_field_value][$eq]=male`
 
 **Method** : `GET`
 
@@ -116,7 +100,7 @@ npm run start
 
 **Body required**: Not
 
-In this example we are getting the equivalences of feld called **gender** with value **male**
+In this example we are getting the equivalences of field called **gender** with value **male**
 
 | key                  | Value | Explanation |
 |:--------------------- | ----------- | ------------- |
@@ -165,13 +149,39 @@ In this example we are getting the equivalences of feld called **gender** with v
 
 **Base Url** : `http://your-domain.com`
 
-**Endpoint** : `/api/equivalences`
+**Endpoint** : `/api/equivalence-v1-complex/query1?source_system=system_2&target_system=system_1`
 
 **Method** : `GET`
 
 **Auth required** : Yes. Check [this](#security)
 
 **Body required**: Not
+
+In this example we are getting all the equivalences from **system_2** to **system_1**
+
+| key                  | Value | Explanation |
+|:--------------------- | ----------- | ------------- |
+| source_system     | system_2      | system in which the fields are known |
+| target_system      | system_1      | system in which fields are not known |
+
+**Response**:
+
+```
+{
+    "gender": {
+        "0": "M",
+        "1": "F"
+    },
+    "custom_code": {
+        "100": "01"
+    },
+    "document_type": {
+        "AAA": "1000",
+        "BBB": "1001",
+        "CCC": "1002"
+    }
+}
+```
 
 For advanced queries, check
 
