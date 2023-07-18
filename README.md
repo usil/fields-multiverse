@@ -25,7 +25,9 @@ If you don't know how each system stores your customer information, you'd have p
 ## Requirements
 
 - Nodejs ≥ 16
-- Mysql database. You could use this docker snippet https://gist.github.com/jrichardsz/73142c5c7eb7136d80b165e75d3a1e22
+- Mysql database 5.7
+    - If you are pro and you use linux or mac, you could use this docker snippet https://gist.github.com/jrichardsz/73142c5c7eb7136d80b165e75d3a1e22
+    - If you are a noob and you use windows, check this https://gist.github.com/jrichardsz/d4fce9b45ca5ac27921610b11221965b
 
 ## Demo mode
 
@@ -44,12 +46,15 @@ For production environments, use some mysql service like AWS RDS. Don't use mysq
 - Create a database inside mysql instance with name "fields_multiverse_db"
 - create .env file and copy content of https://github.com/usil/fields-multiverse/wiki/Env-variables-Generic customizing with your own values
 
-- Excute:
+- Excute this for Linux, mac, and windows git bash:
 
 ```sh
+export $(cat .env | xargs)
 npm install
 npm run develop
 ```
+
+If you are using powershell load the **.env** file with https://stackoverflow.com/a/72236585/3957754
 
 ## Sample fields
 
