@@ -1,8 +1,8 @@
-# Fields Multiverse 
+# Fields Multiverse
 
 A simple platform to register all your fields and its equivalences across all your systems multiverse .
 
-# Use case
+## Use case
 
 Let's say we have 3 big and important systems (inside or outside) our company, each one has its own way and style of fields, attributes, codes, etc and we need to integrate them
 
@@ -22,52 +22,76 @@ What would happen if you tried to integrate these three systems?
 
 If you don't know how each system stores your customer information, you'd have problems. But that's why **fields-multiverse**  was created :heart:
 
-# Requirements
+## Requirements
 
 - Nodejs ≥ 16
 - Mysql database. You could use this docker snippet https://gist.github.com/jrichardsz/73142c5c7eb7136d80b165e75d3a1e22
 
-Based on [strapi](https://strapi.io) 2023 version
+## Demo mode
 
-# Start with docker
-
-- create .env file and copy content of https://github.com/usil/fields-multiverse/wiki/Linux-env-variables
+- create .env file and copy content of https://github.com/usil/fields-multiverse/wiki/Env-variables-Generic
 
 ```
-source .env
-docker-compose up --build
+export $(cat .env | xargs)
+docker compose up -d --build
 ```
 
-# Start without Docker
+For production environments, use some mysql service like AWS RDS. Don't use mysql with docker.
 
-- Create a database inside mysql instance with name is "fields_multiverse"
-- create .env file and copy content of https://github.com/usil/fields-multiverse/wiki/Linux-env-variables
+## Developer mode
+
+- Configure the [Requirements](#requirements)
+- Create a database inside mysql instance with name "fields_multiverse_db"
+- create .env file and copy content of https://github.com/usil/fields-multiverse/wiki/Env-variables-Generic customizing with your own values
 
 - Excute:
 
 ```sh
-source .env
 npm install
-npm run start
+npm run develop
 ```
 
-# Environment variables or settings
+## Sample fields
 
-| name                  | Description | Default Value |
-| --------------------- | ----------- | ------------- |
-| HOST      | The application host      | 0.0.0.0                     |
-| PORT             | The application port | 1337  |
-| ADMIN_JWT_SECRET         | Secret used to encode JWT tokens | admin-jwt-default  |
-| API_TOKEN_SALT           | Salt used to generate API tokens | api-token-salt-default  |
-| APP_KEYS             | Identifier of server |  |
+Follow this to create gender fields (sample): https://github.com/usil/fields-multiverse/wiki/Hello-world-sample-:-Gender-field
+
+## Security
+
+All the endpoints require a token in form of Authorization header
+
+| header key | header value | description |
+|------------|--------------|-------------|
+| Authorization  | Bearer AKfycbyF7II | security token with 3600 ml of duration|
+
+To create a token, follow these steps
+
+- Enter strapi system
+- Click Settings module
+- Click on Global Settings - API Tokens
+- Click on Create new API Token.
+- After following these steps, the system will show you a token which you must save and send as Authorization header in your endpoints.
+
+- [Guideline](https://github.com/usil/fields-multiverse/wiki/Security-:-Create-client-token)
+- [video tutorial](https://youtu.be/dVQKqZYWyv4?t=26)
+
+
+# Environment variables (Settings)
+
+| name                  | description | value(Sample) |
+|:--------------------- |:----------- |:------------- |
 | NODE_ENV             | Type of environment where the application is running|   |
-| DATABASE_CLIENT           | Type of database |  |
-| DATABASE_HOST             | Database host | 0.0.0.0  |
-| DATABASE_PORT             | Database port | 3306 |
-| DATABASE_NAME             | Database name |  fields-multiverse  |
-| DATABASE_USERNAME         | Database username | root |
-| DATABASE_PASSWORD         | Database password | 12345  |
-| DATABASE_SSL             | For SSL database connection | false  |
+| FIELDS_MULTIVERSE_HOST      | The application host      | 0.0.0.0                     |
+| FIELDS_MULTIVERSE_PORT             | The application port | 1337  |
+| FIELDS_MULTIVERSE_JWT_SECRET         | Secret used to encode JWT tokens | changeme :warning:  |
+| FIELDS_MULTIVERSE_API_TOKEN_SALT           | Salt used to generate API tokens | changeme :warning:  |
+| FIELDS_MULTIVERSE_APP_KEYS             | Identifier of server | changeme1,changeme2 |
+| FIELDS_MULTIVERSE_DATABASE_CLIENT           | Type of database | mysql |
+| FIELDS_MULTIVERSE_DATABASE_HOST             | Database host | 0.0.0.0  |
+| FIELDS_MULTIVERSE_DATABASE_PORT             | Database port | 3306 |
+| FIELDS_MULTIVERSE_DATABASE_NAME             | Database name |  fields_multiverse_db  |
+| FIELDS_MULTIVERSE_DATABASE_USERNAME         | Database username | root |
+| FIELDS_MULTIVERSE_DATABASE_PASSWORD         | Database password | changeme :warning:  |
+| FIELDS_MULTIVERSE_DATABASE_SSL             | For SSL database connection | false  |
 
 # Equivalences v1
 
@@ -90,7 +114,7 @@ npm run start
 
 ### ***Get the equivalences of one field - option 1***
 
-**Base Url** : `http://your-domain.com`
+**Base Url** : `{{BASE_URL}}`
 
 **Endpoint** : `/api/equivalences-v1?filters[base_field_name][$eq]=gender&filters[base_field_value][$eq]=male`
 
@@ -189,28 +213,7 @@ For advanced queries, check
 - https://docs.strapi.io/dev-docs/api/rest/filters-locale-publication
 
 
-# Security
-
-All the endpoints require a token in form of Authorization header
-
-| header key | header value | description |
-|------------|--------------|-------------|
-| Authorization  | Bearer AKfycbyF7II | security token with 3600 ml of duration|
-
-To create a token, follow these steps
-
-- Enter strapi system
-- Click Settings module
-- Click on Global Settings - API Tokens
-- Click on Create new API Token.
-
-> [video tutorial](https://youtu.be/dVQKqZYWyv4?t=26)
-
-```
-After following these steps, the system will show you a token which you must save and send as Authorization header in your endpoints.
-```
-
-# Customization
+## Customization
 
 This repository only supports 10 systems. If you want to add more systems you will need to start it in developer mode, add your new fields, rebuild, etc and save the changes in your git repository
 
@@ -224,11 +227,11 @@ volumes:
 and set the **NODE_ENV** variable to **production**
 
 
-# Roadmap
+## Roadmap
 
 -  Equivalences v2: New design to grow with rows instead of growing at the column level
 
-# Contributors
+## Contributors
 
 <table>
   <tbody>
