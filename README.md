@@ -29,58 +29,8 @@ If you don't know how each system stores your customer information, you'd have p
     - If you are pro and you use linux or mac, you could use this docker snippet https://gist.github.com/jrichardsz/73142c5c7eb7136d80b165e75d3a1e22
     - If you are a noob and you use windows, check this https://gist.github.com/jrichardsz/d4fce9b45ca5ac27921610b11221965b
 
-## Demo mode
 
-- create .env file and copy content of https://github.com/usil/fields-multiverse/wiki/Env-variables-Generic
-
-```
-export $(cat .env | xargs)
-docker compose up -d --build
-```
-
-For production environments, use some mysql service like AWS RDS. Don't use mysql with docker.
-
-## Developer mode
-
-- Configure the [Requirements](#requirements)
-- Create a database inside mysql instance with name "fields_multiverse_db"
-- create .env file and copy content of https://github.com/usil/fields-multiverse/wiki/Env-variables-Generic customizing with your own values
-
-- Excute this for Linux, mac, and windows git bash:
-
-```sh
-export $(cat .env | xargs)
-npm install
-npm run develop
-```
-
-If you are using powershell load the **.env** file with https://stackoverflow.com/a/72236585/3957754
-
-## Sample fields
-
-Follow this to create gender fields (sample): https://github.com/usil/fields-multiverse/wiki/Hello-world-sample-:-Gender-field
-
-## Security
-
-All the endpoints require a token in form of Authorization header
-
-| header key | header value | description |
-|------------|--------------|-------------|
-| Authorization  | Bearer AKfycbyF7II | security token with 3600 ml of duration|
-
-To create a token, follow these steps
-
-- Enter strapi system
-- Click Settings module
-- Click on Global Settings - API Tokens
-- Click on Create new API Token.
-- After following these steps, the system will show you a token which you must save and send as Authorization header in your endpoints.
-
-- [Guideline](https://github.com/usil/fields-multiverse/wiki/Security-:-Create-client-token)
-- [video tutorial](https://youtu.be/dVQKqZYWyv4?t=26)
-
-
-# Environment variables (Settings)
+## Environment variables (Settings)
 
 | name                  | description | value(Sample) |
 |:--------------------- |:----------- |:------------- |
@@ -98,119 +48,50 @@ To create a token, follow these steps
 | FIELDS_MULTIVERSE_DATABASE_PASSWORD         | Database password | changeme :warning:  |
 | FIELDS_MULTIVERSE_DATABASE_SSL             | For SSL database connection | false  |
 
-# Equivalences v1
+## Local demo with docker
 
-## Attributes
-
-- base_attribute
-- description
-- system1
-- system2
-- system3
-- system4
-- system5
-- system6
-- system7
-- system8
-- system9
-- system10
-
-## Endpoints
-
-### ***Get the equivalences of one field - option 1***
-
-**Base Url** : `{{BASE_URL}}`
-
-**Endpoint** : `/api/equivalences-v1?filters[base_field_name][$eq]=gender&filters[base_field_value][$eq]=male`
-
-**Method** : `GET`
-
-**Auth required** : Yes. Check [this](#security)
-
-**Body required**: Not
-
-In this example we are getting the equivalences of field called **gender** with value **male**
-
-| key                  | Value | Explanation |
-|:--------------------- | ----------- | ------------- |
-| filters[base_field_name][$eq]     | gender      | base_field_name equal "gender" |
-| filters[base_field_value][$eq]      | male      | base_field_value equal "male" |
-
-**Response**
+- create .env file and copy content of https://github.com/usil/fields-multiverse/wiki/Env-variables-Generic
 
 ```
-{
-    "data": [
-        {
-            "id": 1,
-            "attributes": {
-                "base_field_name": "gender",
-                "base_field_value": "male",
-                "description": null,
-                "system1_value": "M",
-                "system2_value": "0",
-                "system3_value": "MA",
-                "system4_value": null,
-                "system5_value": null,
-                "system6_value": null,
-                "system7_value": null,
-                "system8_value": null,
-                "system9_value": null,
-                "system10_value": null,
-                "createdAt": "2023-07-03T01:15:52.191Z",
-                "updatedAt": "2023-07-03T01:15:56.182Z",
-                "publishedAt": "2023-07-03T01:15:56.171Z"
-            }
-        }
-    ],
-    "meta": {
-        "pagination": {
-            "page": 1,
-            "pageSize": 25,
-            "pageCount": 1,
-            "total": 1
-        }
-    }
-}
+export $(cat .env | xargs)
+docker compose up -d --build
 ```
 
-### ***Get all the equivalences***
+> For production environments, use some mysql service like AWS RDS. Don't use mysql with docker.
 
-**Base Url** : `http://your-domain.com`
+In your favourite browser, go to http:localhost:1337 . You will be prompted with the admin user creation. Choose some password and that's all
 
-**Endpoint** : `/api/equivalence-v1-complex/query1?source_system=system_2&target_system=system_1`
+## Create fields
 
-**Method** : `GET`
+Follow this to create gender fields (sample): https://github.com/usil/fields-multiverse/wiki/Hello-world-sample-:-Gender-field
 
-**Auth required** : Yes. Check [this](#security)
+## Create token
 
-**Body required**: Not
+All the endpoints require a token in form of Authorization header
 
-In this example we are getting all the equivalences from **system_2** to **system_1**
+| header key | header value | description |
+|------------|--------------|-------------|
+| Authorization  | Bearer AKfycbyF7II | security token with 3600 ml of duration|
 
-| key                  | Value | Explanation |
-|:--------------------- | ----------- | ------------- |
-| source_system     | system_2      | system in which the fields are known |
-| target_system      | system_1      | system in which fields are not known |
+To create a token, follow these steps
 
-**Response**:
+- Enter strapi system
+- Click Settings module
+- Click on Global Settings - API Tokens
+- Click on Create new API Token.
+- After following these steps, the system will show you a token which you must save and send as Authorization header in your endpoints.
 
-```
-{
-    "gender": {
-        "0": "M",
-        "1": "F"
-    },
-    "custom_code": {
-        "100": "01"
-    },
-    "document_type": {
-        "AAA": "1000",
-        "BBB": "1001",
-        "CCC": "1002"
-    }
-}
-```
+For more detailed explanation check:
+
+- [Guideline](https://github.com/usil/fields-multiverse/wiki/Security-:-Create-client-token)
+- [video tutorial](https://youtu.be/dVQKqZYWyv4?t=26)
+
+## Http Endpoints
+
+|name|endpoint|description|
+|:--|:--|:--|
+|Get the equivalences of one field|`/api/equivalences-v1?filters[base_field_name][$eq]=gender&filters[base_field_value][$eq]=male`|More details [here](https://github.com/usil/fields-multiverse/wiki/Api-Endpoint-%E2%80%90-Get-one-field-Equivalence)|
+|Get all the equivalences between 2 systems. |`/api/equivalence-v1-complex/query1?source_system=system_2&target_system=system_1`|More details [here](https://github.com/usil/fields-multiverse/wiki/Api-Endpoint-%E2%80%90-Get-all-the-equivalences)|
 
 For advanced queries, check
 
