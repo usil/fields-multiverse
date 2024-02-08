@@ -1,0 +1,55 @@
+{
+  "kind": "collectionType",
+  "collectionName": "equivalences_v1",
+  "info": {
+    "singularName": "equivalence-v1",
+    "pluralName": "equivalences-v1",
+    "displayName": "Equivalence v1",
+    "description": "A simple collection to map fields by systems"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "base_field_name": {
+      "type": "string"
+    },
+    "base_field_value": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "system1_value": {
+      "type": "string"
+    },
+    "system2_value": {
+      "type": "string"
+    },
+    "system3_value": {
+      "type": "string"
+    },
+    "system4_value": {
+      "type": "string"
+    },
+    "system5_value": {
+      "type": "string"
+    },
+    "system6_value": {
+      "type": "string"
+    },
+    "system7_value": {
+      "type": "string"
+    },
+    "system8_value": {
+      "type": "string"
+    },
+    "system9_value": {
+      "type": "string"
+    },
+    "system10_value": {
+      "type": "string"
+    }
+  }
+}
